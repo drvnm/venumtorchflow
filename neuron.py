@@ -1,34 +1,33 @@
-import math
-import numpy as np
-# softmax_output = [0.7, 0.1, 0.2]
-# target_output = [1, 0, 0]
+# import matplotlib.pyplot as plt
+# import nnfs
+# from nnfs.datasets import vertical_data
 
-# loss = -(math.log(softmax_output[0]) * target_output[0] +
-#          math.log(softmax_output[1]) * target_output[1] +
-#          math.log(softmax_output[2]) * target_output[2])
+# nnfs.init()
 
-# loss_one = -(math.log(softmax_output[0]) * target_output[0])
-# print(loss)
-# print(loss_one)
+# X, y = vertical_data(samples=100, classes=3)
+# plt.scatter(X[:, 0], X[:, 1], c=y, s=40, cmap='brg')
+# plt.show()
 
 
-softmax_outputs = np.array([[0.7, 0.1, 0.2],
-                            [0.1, 0.5, 0.4, ],
-                            [0.02, 0.9, 0.08]])
-class_targets = np.array([[1, 0, 0],
-                          [0, 1, 0],
-                          [0, 1, 0]])
+# X, y = spiral_data(samples=100, classes=3)
+# dense1 = Layer_Dense(2, 3)
+# activation1 = Activation_ReLu()
 
+# dense2 = Layer_Dense(3, 3)
+# activation2 = Activation_Softmax()
 
-# alleen de correcte indexes in een array
-if len(class_targets.shape) == 1:
-    # alle hoogste scores
-    correct_confidence = softmax_outputs[range(len(softmax_outputs)), class_targets]
-    print(correct_confidence)
+# dense1.forward(X)
+# activation1.forward(dense1.output)
+# dense2.forward(activation1.output)
+# activation2.forward(dense2.output)
 
-elif len(class_targets.shape) == 2:
-    correct_confidence = np.sum(softmax_outputs * class_targets, axis=1)
+# loss_function = Loss_CategoricalCrossentropy()
+# loss = loss_function.calculate(activation2.output, y)
 
-losses = -np.log(correct_confidence)
-avg_loss = np.mean(losses)
-print(correct_confidence)
+# predictions = np.argmax(activation2.output, axis=1)
+
+# if len(y.shape) == 2:
+#     y = np.argmax(y, axis=1)
+
+# accuracy = np.mean(predictions == y)
+# print(accuracy)
