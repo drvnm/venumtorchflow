@@ -18,12 +18,28 @@ class Layer_Dense:
     def forward(self, inputs):
         # bereken de nieuwe outputs
         self.output = np.dot(inputs, self.weights) + self.biases
+        # onthoud de inputs
+        self.inputs = inputs
+
+    def backward(self, dvalues):
+        # gradients voor de weights en biases
+        self.dweights = np.dot(self.inputs.T, dvalues)
+        self.dbiases = np.sum(dvalues, axis=0, keepdims=True)
+        # gradients met w.r.t inputs
+        self.dipunts = np.dot(dvalues, self.weights.T)
 
 
 class Activation_ReLu:
     def forward(self, inputs):
+        # onthoud de waarden op de derivatives te berekenen
+        self.inputs = inputs
         # berekent ReLu op elk punt in de inputs
         self.output = np.maximum(0, inputs)
+
+    def backward(self, dvalues):
+        self.diputs = dvalues.copy()
+        # self.diputs zij de derivatives w.r.t de relu functie * gradient
+        self.diputs[self.inputs <= 0] = 0
 
 
 class Activation_Softmax:
@@ -33,6 +49,16 @@ class Activation_Softmax:
         # voor elke sample in de batch, devide elke feature met de sum van alle features (gexponentiate)
         probabilities = exp_values / np.sum(exp_values, axis=1, keepdims=True)
         self.output = probabilities
+
+    def backward(self, dvalues):
+        self.dinputs = np.empty_like(dvalues)
+        for index, (single_output, single_dvalues) in \
+                enumerate(zip(self.output, dvalues)):
+            single_output = single_output.reshape(-1, 1)
+            jacobian_matrix = np.diagflat(single_output) - \
+                np.dot(single_output, single_output.T)
+            self.dinputs[index] = np.dot(jacobian_matrix,
+                                         single_dvalues)
 
 
 class Loss:
@@ -62,6 +88,20 @@ class Loss_CategoricalCrossentropy(Loss):
         neg_losses = -np.log(correct_confidences)
         return neg_losses
 
+    def backward(self, dvalues, y_true):
+        # hvlheid samples
+        samples = len(dvalues)
+        labels = len(dvalues[0])
+
+        # maak y_true one hot encoded als dit niet zo is.
+        if(len(y_true.shape)) == 1:
+            y_true = np.eye(labels)[y_true]
+
+        # bereken de gradient
+        self.diputs = -y_true / dvalues
+        # normalize gradient
+        self.diputs = self.diputs / samples
+
 
 # ============================ chapter 6 optimize ==
 X, y = spiral_data(samples=100, classes=3)
@@ -71,7 +111,7 @@ activation1 = Activation_ReLu()
 dense2 = Layer_Dense(3, 3)
 activation2 = Activation_Softmax()
 
-# # loss function
+# # loss functio22n
 loss_function = Loss_CategoricalCrossentropy()
 
 # helper variables

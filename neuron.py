@@ -1,33 +1,126 @@
-# import matplotlib.pyplot as plt
-# import nnfs
-# from nnfs.datasets import vertical_data
+# forwaard pass
+x = [1.0, -2.0, 3.0]
+w = [-3.0, -1.0, 2.0]
+b = 1
 
-# nnfs.init()
+# inputs x respective weights
+xw0 = x[0] * w[0]
+xw1 = x[1] * w[1]
+xw2 = x[2] * w[2]
 
-# X, y = vertical_data(samples=100, classes=3)
-# plt.scatter(X[:, 0], X[:, 1], c=y, s=40, cmap='brg')
-# plt.show()
+
+# adding weighted inputs and bias
+z = xw0 + xw1 + xw2 + b
+
+# applying relu
+y = max(0, z)
+print(y)
+dvalue = 1.0
+drelu_dz = dvalue * (1. if z > 0 else 0.)
+
+dsum_dxw0 = 1
+drelu_dxw0 = drelu_dz * dsum_dxw0
+
+dsum_dxw1 = 1
+drelu_dxw1 = drelu_dz * dsum_dxw1
+
+dsum_dxw2 = 1
+drelu_dxw2 = drelu_dz * dsum_dxw2
+
+dsum_db = 1
+drelu_db = drelu_dz * dsum_db
+
+dmul_dx0 = w[0]
+dmul_dx1 = w[1]
+dmul_dx2 = w[2]
+dmul_dw0 = x[0]
+dmul_dw1 = x[1]
+dmul_dw2 = x[2]
+drelu_dx0 = drelu_dxw0 * dmul_dx0
+drelu_dw0 = drelu_dxw0 * dmul_dw0
+drelu_dx1 = drelu_dxw1 * dmul_dx1
+drelu_dw1 = drelu_dxw1 * dmul_dw1
+drelu_dx2 = drelu_dxw2 * dmul_dx2
+drelu_dw2 = drelu_dxw2 * dmul_dw2
+drelu_db = drelu_dz * dsum_db
+# print(drelu_dx0, drelu_dw0, drelu_dx1, drelu_dw1, drelu_dx2, drelu_dw2)
 
 
-# X, y = spiral_data(samples=100, classes=3)
-# dense1 = Layer_Dense(2, 3)
-# activation1 = Activation_ReLu()
+dx = [drelu_dx0, drelu_dx1, drelu_dx2]  # gradients on inputs
+dw = [drelu_dw0, drelu_dw1, drelu_dw2]  # gradients on weights
+db = drelu_db  # gradient on bias...just 1 bias here
 
-# dense2 = Layer_Dense(3, 3)
-# activation2 = Activation_Softmax()
 
-# dense1.forward(X)
-# activation1.forward(dense1.output)
-# dense2.forward(activation1.output)
-# activation2.forward(dense2.output)
+print(w, b)
+w[0] += -0.001 * dw[0]
+w[1] += -0.001 * dw[1]
+w[2] += -0.001 * dw[2]
+b += -0.001 * db
+xw0 = x[0] * w[0]
+xw1 = x[1] * w[1]
+xw2 = x[2] * w[2]
 
-# loss_function = Loss_CategoricalCrossentropy()
-# loss = loss_function.calculate(activation2.output, y)
 
-# predictions = np.argmax(activation2.output, axis=1)
+# adding weighted inputs and bias
+z = xw0 + xw1 + xw2 + b
 
-# if len(y.shape) == 2:
-#     y = np.argmax(y, axis=1)
+# applying relu
+y = max(0, z)
 
-# accuracy = np.mean(predictions == y)
-# print(accuracy)
+print(y)
+
+
+
+for i in range(444):
+    dvalue = 1.0
+    drelu_dz = dvalue * (1. if z > 0 else 0.)
+
+    dsum_dxw0 = 1
+    drelu_dxw0 = drelu_dz * dsum_dxw0
+
+    dsum_dxw1 = 1
+    drelu_dxw1 = drelu_dz * dsum_dxw1
+
+    dsum_dxw2 = 1
+    drelu_dxw2 = drelu_dz * dsum_dxw2
+
+    dsum_db = 1
+    drelu_db = drelu_dz * dsum_db
+
+    dmul_dx0 = w[0]
+    dmul_dx1 = w[1]
+    dmul_dx2 = w[2]
+    dmul_dw0 = x[0]
+    dmul_dw1 = x[1]
+    dmul_dw2 = x[2]
+    drelu_dx0 = drelu_dxw0 * dmul_dx0
+    drelu_dw0 = drelu_dxw0 * dmul_dw0
+    drelu_dx1 = drelu_dxw1 * dmul_dx1
+    drelu_dw1 = drelu_dxw1 * dmul_dw1
+    drelu_dx2 = drelu_dxw2 * dmul_dx2
+    drelu_dw2 = drelu_dxw2 * dmul_dw2
+    drelu_db = drelu_dz * dsum_db
+    # print(drelu_dx0, drelu_dw0, drelu_dx1, drelu_dw1, drelu_dx2, drelu_dw2)
+
+
+    dx = [drelu_dx0, drelu_dx1, drelu_dx2]  # gradients on inputs
+    dw = [drelu_dw0, drelu_dw1, drelu_dw2]  # gradients on weights
+    db = drelu_db  # gradient on bias...just 1 bias here
+
+
+  
+    w[0] += -0.001 * dw[0]
+    w[1] += -0.001 * dw[1]
+    w[2] += -0.001 * dw[2]
+    b += -0.001 * db
+    xw0 = x[0] * w[0]
+    xw1 = x[1] * w[1]
+    xw2 = x[2] * w[2]
+
+
+    # adding weighted inputs and bias
+    z = xw0 + xw1 + xw2 + b
+
+    # applying relu
+    y = max(0, z)
+    print(y)
