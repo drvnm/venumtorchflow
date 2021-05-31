@@ -1,8 +1,6 @@
 import numpy as np
 import nnfs
 from nnfs.datasets import spiral_data
-from nnfs.datasets import vertical_data
-import matplotlib.pyplot as plt
 
 
 nnfs.init()
@@ -16,10 +14,10 @@ class Layer_Dense:
         self.biases = np.zeros((1, n_neurons))
 
     def forward(self, inputs):
-        # bereken de nieuwe outputs
-        self.output = np.dot(inputs, self.weights) + self.biases
         # onthoud de inputs
         self.inputs = inputs
+        # bereken de nieuwe outputs
+        self.output = np.dot(inputs, self.weights) + self.biases
 
     def backward(self, dvalues):
         # gradients voor de weights en biases
@@ -130,25 +128,66 @@ class Activation_Softmax_Loss_CategoricalCrossEntropy():
         self.dinputs = self.dinputs / samples
 
 
+class Optimizer_SGD:
+    def __init__(self, learning_rate=1.0):
+        self.learning_rate = learning_rate
+
+    def update_params(self, layer):
+        layer.weights += -self.learning_rate * layer.dweights
+        layer.biases += -self.learning_rate * layer.dbiases
+
 # ============================ chapter 6 optimize ==
+# X, y = spiral_data(samples=100, classes=3)
+# dense1 = Layer_Dense(2, 3)
+# activation1 = Activation_ReLu()
+# dense2 = Layer_Dense(3, 3)
+# loss_activation = Activation_Softmax_Loss_CategoricalCrossEntropy()
+
+# for i in range(120):
+#     dense1.forward(X)
+#     activation1.forward(dense1.output)
+#     dense2.forward(activation1.output)
+#     loss = loss_activation.forward(dense2.output, y)
+#     optimizer = Optimizer_SGD()
+
+#     print(loss_activation.output[:5])
+#     print('loss', loss)
+
+#     loss_activation.backward(loss_activation.output, y)
+#     dense2.backward(loss_activation.dinputs)
+#     activation1.backward(dense2.dinputs)
+#     dense1.backward(activation1.dinputs)
+
+#     optimizer.update_params(dense1)
+#     optimizer.update_params(dense2)
+
+
+# Create dataset
 X, y = spiral_data(samples=100, classes=3)
-dense1 = Layer_Dense(2, 3)
+# Create Dense layer with 2 input features and 64 output values
+dense1 = Layer_Dense(2, 64)
+# Create ReLU activation (to be used with Dense layer):
 activation1 = Activation_ReLu()
-dense2 = Layer_Dense(3, 3)
+# Create second Dense layer with 64 input features (as we take output
+# of previous layer here) and 3 output values (output values)
+dense2 = Layer_Dense(64, 3)
+# Create Softmax classifier's combined loss and activation
 loss_activation = Activation_Softmax_Loss_CategoricalCrossEntropy()
+# Create optimizer
+optimizer = Optimizer_SGD()
 
 
-dense1.forward(X)
-activation1.forward(dense1.output)
-dense2.forward(activation1.output)
-loss = loss_activation.forward(dense2.output, y)
+for epoch in range(10001):
+    dense1.forward(X)
+    activation1.forward(dense1.output)
+    dense2.forward(activation1.output)
+    loss = loss_activation.forward(dense2.output, y)
+    if not epoch % 100:
+        print(f'epoch: {epoch}, loss: {loss}')
+    loss_activation.backward(loss_activation.output, y)
+    dense2.backward(loss_activation.dinputs)
+    activation1.backward(dense2.dinputs)
+    dense1.backward(activation1.dinputs)
 
-print(loss_activation.output[:5])
-print('loss', loss)
-
-loss_activation.backward(loss_activation.output, y)
-dense2.backward(loss_activation.dinputs)
-activation1.backward(dense2.dinputs)
-dense1.backward(activation1.dinputs)
-
-print(dense1.dweights)
+    optimizer.update_params(dense1)
+    optimizer.update_params(dense2)
