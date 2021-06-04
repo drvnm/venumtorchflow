@@ -129,13 +129,14 @@ class Activation_Softmax_Loss_CategoricalCrossEntropy():
 
 
 class Optimizer_SGD:
-    def __init__(self, learning_rate=1., decay=0.):
+    def __init__(self, learning_rate=1., decay=0., momentum=0.):
         self.learning_rate = learning_rate
         # de learning rate die we uptdaten
         self.current_learning_rate = learning_rate
         # de hoeveelheid decay
         self.decay = decay
         self.iterations = 0
+        self.momentum = momentum
 
     def pre_update_params(self):
         if self.decay:
@@ -145,36 +146,113 @@ class Optimizer_SGD:
                     (1. / (1. + self.decay * self.iterations))
 
     def update_params(self, layer):
-        layer.weights += -self.learning_rate * layer.dweights
-        layer.biases += -self.learning_rate * layer.dbiases
+        # als we SGD met momentum gebruiken
+        if self.momentum:
+            if not hasattr(layer, 'weight_momentums'):
+                layer.weight_momentums = np.zeros_like(layer.weights)
+                layer.bias_momentums = np.zeros_like(layer.biases)
+
+            weight_updates = \
+                self.momentum * layer.weight_momentums - \
+                self.current_learning_rate * layer.dweights
+            layer.weight_momentums = weight_updates
+            # Build bias updates
+            bias_updates = \
+                self.momentum * layer.bias_momentums - \
+                self.current_learning_rate * layer.dbiases
+            layer.bias_momentums = bias_updates
+        else:
+            weight_updates = -self.current_learning_rate * layer.dweights
+            bias_updates = -self.current_learning_rate * layer.dbiases
+
+        # update de weights en biases
+        layer.weights += weight_updates
+        layer.biases += bias_updates
 
     def post_update_params(self):
         self.iterations += 1
 
-# ============================ chapter 6 optimize ==
-# X, y = spiral_data(samples=100, classes=3)
-# dense1 = Layer_Dense(2, 3)
-# activation1 = Activation_ReLu()
-# dense2 = Layer_Dense(3, 3)
-# loss_activation = Activation_Softmax_Loss_CategoricalCrossEntropy()
 
-# for i in range(120):
-#     dense1.forward(X)
-#     activation1.forward(dense1.output)
-#     dense2.forward(activation1.output)
-#     loss = loss_activation.forward(dense2.output, y)
-#     optimizer = Optimizer_SGD()
+class Optimizer_Adagrad:
+    def __init__(self, learning_rate=1., decay=0., epsilon=1e-7):
+        self.learning_rate = learning_rate
+        # de learning rate die we uptdaten
+        self.current_learning_rate = learning_rate
+        # de hoeveelheid decay
+        self.decay = decay
+        self.iterations = 0
+        self.epsilon = epsilon
 
-#     print(loss_activation.output[:5])
-#     print('loss', loss)
+    def pre_update_params(self):
+        if self.decay:
+            # update de learning rate, wordt steeds lager
+            if self.decay:
+                self.current_learning_rate = self.learning_rate * \
+                    (1. / (1. + self.decay * self.iterations))
 
-#     loss_activation.backward(loss_activation.output, y)
-#     dense2.backward(loss_activation.dinputs)
-#     activation1.backward(dense2.dinputs)
-#     dense1.backward(activation1.dinputs)
+    def update_params(self, layer):
 
-#     optimizer.update_params(dense1)
-#     optimizer.update_params(dense2)
+        # als de layer geen gecachde arrays heeft, maak deze
+        if not hasattr(layer, 'weight_cache'):
+            layer.weight_cache = np.zeros_like(layer.weights)
+            layer.bias_cache = np.zeros_like(layer.biases)
+
+        # update de cache met squared huidige gradients
+        layer.weight_cache += layer.dweights ** 2
+        layer.bias_cache += layer.dbiases ** 2
+        print(layer.weight_cache)
+
+        # update parameters
+        layer.weights += -self.current_learning_rate * \
+            layer.dweights / \
+            (np.sqrt(layer.weight_cache) + self.epsilon)
+
+        layer.biases += -self.current_learning_rate * \
+            layer.dbiases / \
+            (np.sqrt(layer.bias_cache) + self.epsilon)
+
+    def post_update_params(self):
+        self.iterations += 1
+
+
+class Optimizer_RMSprop:
+    def __init__(self, learning_rate=0.001, decay=0., epsilon=1e-7,
+                 rho=0.9):
+        self.learning_rate = learning_rate
+        self.current_learning_rate = learning_rate
+        self.decay = decay
+        self.iterations = 0
+        self.epsilon = epsilon
+        self.rho = rho
+
+    def pre_update_params(self):
+        # als we decay hebben, maak de learning rate dan steeds iets kleiner
+        if self.decay:
+            self.current_learning_rate = self.learning_rate * \
+                (1. / (1. + self.decay * self.iterations))
+
+    def update_params(self, layer):
+        # als de layer nog geen cached gradients heeft, maak deze dan
+        if not hasattr(layer, 'weight_cache'):
+            layer.weight_cache = np.zeros_like(layer.weights)
+            layer.bias_cache = np.zeros_like(layer.biases)
+
+        # update caches
+        layer.weight_cache = self.rho * layer.weight_cache + \
+            (1 - self.rho) * layer.dweights ** 2
+
+        layer.bias_cache = self.rho * layer.bias_cache + \
+            (1 - self.rho) * layer.dbiases ** 2
+
+        # update weights en biases met SGD
+        layer.weights += -self.current_learning_rate * \
+            layer.dweights / (np.sqrt(layer.weight_cache) + self.epsilon)
+
+        layer.biases += -self.current_learning_rate * \
+            layer.dbiases / (np.sqrt(layer.bias_cache) + self.epsilon)
+
+    def post_update_params(self):
+        self.iterations += 1
 
 
 # Create dataset
@@ -189,7 +267,8 @@ dense2 = Layer_Dense(64, 3)
 # Create Softmax classifier's combined loss and activation
 loss_activation = Activation_Softmax_Loss_CategoricalCrossEntropy()
 # Create optimizer
-optimizer = Optimizer_SGD(decay=1e-3)
+optimizer = Optimizer_RMSprop(learning_rate=0.02, decay=1e-5,
+                              rho=0.999)
 
 
 for epoch in range(10001):
