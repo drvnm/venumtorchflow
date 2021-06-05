@@ -255,6 +255,71 @@ class Optimizer_RMSprop:
         self.iterations += 1
 
 
+class Optimizer_Adam:
+    def __init__(self, learning_rate=0.001, decay=0., epsilon=1e-7,
+                 beta_1=0.9, beta_2=0.999):
+        self.learning_rate = learning_rate
+        self.current_learning_rate = learning_rate
+        self.decay = decay
+        self.iterations = 0
+        self.epsilon = epsilon
+        self.beta_1 = beta_1
+        self.beta_2 = beta_2
+
+    def pre_update_params(self):
+        # als we decay hebben, maak de learning rate dan steeds iets kleiner
+        if self.decay:
+            self.current_learning_rate = self.learning_rate * \
+                (1. / (1. + self.decay * self.iterations))
+
+    def update_params(self, layer):
+        if not hasattr(layer, 'weight_cache'):
+            # zet alle momentums en caches
+            layer.weight_momentums = np.zeros_like(layer.weights)
+            layer.weight_cache = np.zeros_like(layer.weights)
+            layer.bias_momentums = np.zeros_like(layer.biases)
+            layer.bias_cache = np.zeros_like(layer.biases)
+
+        # zet de momentums
+        layer.weight_momentums = self.beta_1 * \
+            layer.weight_momentums + (1 - self.beta_1) * layer.dweights
+
+        layer.bias_momentums = self.beta_1 * \
+            layer.bias_momentums + (1 - self.beta_1) * layer.dbiases
+
+        # correct de momentums
+        weight_momentums_corrected = layer.weight_momentums / \
+            (1 - self.beta_1 ** (self.iterations + 1))
+
+        bias_momentums_corrected = layer.bias_momentums / \
+            (1 - self.beta_1 ** (self.iterations + 1))
+
+        # update cache met squared gradients
+        layer.weight_cache = self.beta_2 * layer.weight_cache + \
+            (1 - self.beta_2) * layer.dweights ** 2
+
+        layer.bias_cache = self.beta_2 * layer.bias_cache + \
+            (1 - self.beta_2) * layer.dbiases ** 2
+
+        # correct de caches
+        weight_cache_corrected = layer.weight_cache / \
+            (1 - self.beta_2 ** (self.iterations + 1))
+
+        bias_cache_corrected = layer.bias_cache / \
+            (1 - self.beta_2 ** (self.iterations + 1))
+
+        layer.weights += -self.current_learning_rate * \
+            weight_momentums_corrected / \
+            (np.sqrt(weight_cache_corrected) + self.epsilon)
+
+        layer.biases += -self.current_learning_rate * \
+            bias_momentums_corrected / \
+            (np.sqrt(bias_cache_corrected) + self.epsilon)
+
+    def post_update_params(self):
+        self.iterations += 1
+
+
 # Create dataset
 X, y = spiral_data(samples=100, classes=3)
 # Create Dense layer with 2 input features and 64 output values
@@ -267,17 +332,24 @@ dense2 = Layer_Dense(64, 3)
 # Create Softmax classifier's combined loss and activation
 loss_activation = Activation_Softmax_Loss_CategoricalCrossEntropy()
 # Create optimizer
-optimizer = Optimizer_RMSprop(learning_rate=0.02, decay=1e-5,
-                              rho=0.999)
-
+optimizer = Optimizer_Adam(learning_rate=0.05, decay=5e-7)
 
 for epoch in range(10001):
     dense1.forward(X)
     activation1.forward(dense1.output)
     dense2.forward(activation1.output)
     loss = loss_activation.forward(dense2.output, y)
+
+    predictions = np.argmax(loss_activation.output, axis=1)
+    if len(y.shape) == 2:
+        y = np.argmax(y, axis=1)
+    accuracy = np.mean(predictions == y)
+
     if not epoch % 100:
-        print(f'epoch: {epoch}, loss: {loss}')
+        print(f'epoch: {epoch}, ' +
+              f'acc: {accuracy:.3f} ' +
+              f'loss: {loss:.3f} ' +
+              f'lr: {optimizer.current_learning_rate}')
     loss_activation.backward(loss_activation.output, y)
     dense2.backward(loss_activation.dinputs)
     activation1.backward(dense2.dinputs)
@@ -287,3 +359,24 @@ for epoch in range(10001):
     optimizer.update_params(dense1)
     optimizer.update_params(dense2)
     optimizer.post_update_params()
+
+
+X_test, y_test = spiral_data(samples=100, classes=3)
+# Perform a forward pass of our testing data through this layer
+dense1.forward(X_test)
+# Perform a forward pass through activation function
+# takes the output of first dense layer here
+activation1.forward(dense1.output)
+# Perform a forward pass through second Dense layer
+# takes outputs of activation function of first layer as inputs
+dense2.forward(activation1.output)
+# Perform a forward pass through the activation/loss function
+# takes the output of second dense layer here and returns loss
+loss = loss_activation.forward(dense2.output, y_test)
+# Calculate accuracy from output of activation2 and targets
+# calculate values along first axis
+predictions = np.argmax(loss_activation.output, axis=1)
+if len(y_test.shape) == 2:
+    y_test = np.argmax(y_test, axis=1)
+accuracy = np.mean(predictions == y_test)
+print(f'validation, acc: {accuracy:.3f}, loss: {loss:.3f}')
