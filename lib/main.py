@@ -1,10 +1,9 @@
 import numpy as np
 from nnfs.datasets import spiral_data
-from optimizers.adam import Optimizer_Adam
-from layers.layer_dense import Layer_Dense
-from activations.relu import Activation_ReLu
-from activations.softmax_cce import (
-    Activation_Softmax_Loss_CategoricalCrossEntropy)
+from venumtorchflow.optimizers import Optimizer_Adam
+from venumtorchflow.layers import Layer_Dense
+from venumtorchflow.activations import (Activation_ReLu,
+                                        Activation_Softmax_Loss_CategoricalCrossEntropy)
 
 
 X, y = spiral_data(samples=100, classes=3)
@@ -15,7 +14,7 @@ dense2 = Layer_Dense(64, 3)
 loss_activation = Activation_Softmax_Loss_CategoricalCrossEntropy()
 optimizer = Optimizer_Adam(learning_rate=0.05, decay=5e-7)
 
-for epoch in range(10001):
+for epoch in range(10000):
     dense1.forward(X)
     activation1.forward(dense1.output)
     dense2.forward(activation1.output)

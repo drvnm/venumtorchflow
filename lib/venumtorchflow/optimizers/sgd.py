@@ -32,6 +32,7 @@ class Optimizer_SGD:
                 self.momentum * layer.weight_momentums - \
                 self.current_learning_rate * layer.dweights
             layer.weight_momentums = weight_updates
+            
             # Build bias updates
             bias_updates = \
                 self.momentum * layer.bias_momentums - \

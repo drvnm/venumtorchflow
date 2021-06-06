@@ -1,6 +1,6 @@
 import numpy as np
 from .softmax import Activation_Softmax
-from losses.cce import Loss_CategoricalCrossentropy
+from venumtorchflow.losses.cce import Loss_CategoricalCrossentropy
 import nnfs
 
 nnfs.init()
