@@ -1,23 +1,25 @@
 import numpy as np
 from nnfs.datasets import spiral_data
-from venumtorchflow.optimizers import Optimizer_Adam
-from venumtorchflow.layers import Layer_Dense
-from venumtorchflow.activations import (Activation_ReLu,
+from venumtorchflow.nn.optimizers import Optimizer_Adam
+from venumtorchflow.nn.layers import (Layer_Dense, Layer_Dropout)
+from venumtorchflow.nn.activations import (Activation_ReLu,
                                         Activation_Softmax_Loss_CategoricalCrossEntropy)
 
 
 X, y = spiral_data(samples=100, classes=3)
-dense1 = Layer_Dense(2, 64, weight_regularizer_l2=5e-4,
+dense1 = Layer_Dense(2, 512, weight_regularizer_l2=5e-4,
                      bias_regularizer_l2=5e-4)
 activation1 = Activation_ReLu()
-dense2 = Layer_Dense(64, 3)
+dropout1 = Layer_Dropout(0.1)
+dense2 = Layer_Dense(512, 3)
 loss_activation = Activation_Softmax_Loss_CategoricalCrossEntropy()
-optimizer = Optimizer_Adam(learning_rate=0.05, decay=5e-7)
+optimizer = Optimizer_Adam(learning_rate=0.05, decay=5e-5)
 
 for epoch in range(10000):
     dense1.forward(X)
     activation1.forward(dense1.output)
-    dense2.forward(activation1.output)
+    dropout1.forward(activation1.output)
+    dense2.forward(dropout1.output)
     data_loss = loss_activation.forward(dense2.output, y)
     regularization_loss = loss_activation.loss.regularization_loss(dense1) + \
         loss_activation.loss.regularization_loss(dense2)
@@ -31,12 +33,14 @@ for epoch in range(10000):
     if not epoch % 100:
         print(f'epoch: {epoch}, ' +
               f'acc: {accuracy:.3f} ' +
+              f'loss: {loss:.3f} '
               f'data_loss: {data_loss:.3f} ' +
               f'reg_loss: {regularization_loss:.3f} ' +
               f'lr: {optimizer.current_learning_rate}')
     loss_activation.backward(loss_activation.output, y)
     dense2.backward(loss_activation.dinputs)
-    activation1.backward(dense2.dinputs)
+    dropout1.backward(dense2.dinputs)
+    activation1.backward(dropout1.dinputs)
     dense1.backward(activation1.dinputs)
 
     optimizer.pre_update_params()
