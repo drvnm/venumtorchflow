@@ -11,7 +11,7 @@ class Layer_Dense:
                  bias_regularizer_l1=0, bias_regularizer_l2=0):
         # maakt de weigts, inputs x neuronen zodat we de matrix
         # niet hoeven te transposen.
-        self.weights = 0.01 * np.random.randn(n_inputs, n_neurons)
+        self.weights = 0.1 * np.random.randn(n_inputs, n_neurons)
         # een column matrix, begin met 0
         self.biases = np.zeros((1, n_neurons))
 
