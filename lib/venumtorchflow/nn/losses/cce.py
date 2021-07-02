@@ -1,7 +1,5 @@
 import numpy as np
-import nnfs
 from .loss import Loss
-nnfs.init()
 
 
 class Loss_CategoricalCrossentropy(Loss):

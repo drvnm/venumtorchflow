@@ -1,8 +1,4 @@
 import numpy as np
-import nnfs
-
-nnfs.init()
-
 
 class Optimizer_Adagrad:
     def __init__(self, learning_rate=1., decay=0., epsilon=1e-7):

@@ -1,8 +1,5 @@
 import numpy as np
 from .loss import Loss
-import nnfs
-
-nnfs.init()
 
 
 class Loss_MeanAbsoluteError(Loss):

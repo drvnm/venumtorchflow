@@ -1,7 +1,4 @@
 import numpy as np
-import nnfs
-
-nnfs.init()
 
 
 class Layer_Dropout:
@@ -9,8 +6,13 @@ class Layer_Dropout:
         # voor 0.1 dropout hebben we 0.9 success
         self.rate = 1 - rate
 
-    def forward(self, inputs):
+    def forward(self, inputs, training):
         self.inputs = inputs
+
+        if not training:
+            self.output = inputs.copy()
+            return
+
         # maakt de binary_mask, zodat we die later verm. met de inputs
         self.binary_mask = np.random.binomial(1, self.rate,
                                               size=inputs.shape) / self.rate

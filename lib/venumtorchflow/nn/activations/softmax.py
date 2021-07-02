@@ -1,11 +1,8 @@
 import numpy as np
-import nnfs
-
-nnfs.init()
 
 
 class Activation_Softmax:
-    def forward(self, inputs):
+    def forward(self, inputs, training):
         # exponentiate elke waarde in de batch (e^x)
         exp_values = np.exp(inputs - np.max(inputs, axis=1, keepdims=True))
         # voor elke sample in de batch, devide elke feature met de sum van alle features (gexponentiate)
@@ -23,3 +20,6 @@ class Activation_Softmax:
             jacobian_matrix = np.diagflat(
                 single_output) - np.dot(single_output, single_output.T)
             self.dinputs[index] = np.dot(jacobian_matrix, single_dvalues)
+
+    def predictions(self, outputs):
+        return np.argmax(outputs, axis=1)

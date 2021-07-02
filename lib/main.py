@@ -1,68 +1,87 @@
-import numpy as np
-from nnfs.datasets import spiral_data
-from nnfs.datasets import sine_data
-from venumtorchflow.nn.optimizers import Optimizer_Adam
-from venumtorchflow.nn.losses import Loss_MeanSquaredError
-from venumtorchflow.nn.layers import (Layer_Dense, Layer_Dropout)
-from venumtorchflow.nn.activations import (Activation_ReLu,
-                                           Activation_Linear,
-                                           Activation_Softmax_Loss_CategoricalCrossEntropy)
+# import numpy as np
+# import os
+# import cv2
+# from tkinter import *
+
+# import venumtorchflow.nn as vtf
 
 
-X, y = sine_data()
-dense1 = Layer_Dense(1, 64)
-activation1 = Activation_ReLu()
+# # model = vtf.Model.load('fmnist2.model')
+# # print(model)
+# # Loads a MNIST dataset
+# def load_mnist_dataset(dataset, path):
 
-dense2 = Layer_Dense(64, 64)
-activation2 = Activation_ReLu()
+#     # Scan all the directories and create a list of labels
+#     labels = os.listdir(os.path.join(path, dataset))
 
-dense3 = Layer_Dense(64, 64)
-activation3 = Activation_Linear()
+#     # Create lists for samples and labels
+#     X = []
+#     y = []
 
-loss_function = Loss_MeanSquaredError()
-optimizer = Optimizer_Adam(learning_rate=0.005, decay=1e-3)
+#     # For each label folder
+#     for label in labels:
+#         # And for each image in given folder
+#         for file in os.listdir(os.path.join(path, dataset, label)):
+#             # Read the image
+#             image = cv2.imread(
+#                 os.path.join(path, dataset, label, file),
+#                 cv2.IMREAD_UNCHANGED)
 
-accuracy_precision = np.std(y) / 250
+#             # And append it and a label to the lists
+#             X.append(image)
+#             y.append(label)
 
-for epoch in range(10001):
-    dense1.forward(X)
-    activation1.forward(dense1.output)
+#     # Convert the data to proper numpy arrays and return
+#     return np.array(X, dtype=object), np.array(y).astype('uint8')
 
-    dense2.forward(activation1.output)
-    activation2.forward(dense2.output)
 
-    dense3.forward(activation2.output)
-    activation3.forward(dense3.output)
+# # MNIST dataset (train + test)
+# def create_data_mnist(path):
 
-    data_loss = loss_function.calculate(activation3.output, y)
+#     # Load both sets separately
+#     X, y = load_mnist_dataset('train', path)
+#     X_test, y_test = load_mnist_dataset('test', path)
 
-    regularization_loss = loss_function.regularization_loss(dense1) + \
-        loss_function.regularization_loss(dense2) + \
-        loss_function.regularization_loss(dense3)
+#     # And return all the data
+#     return X, y, X_test, y_test
 
-    loss = data_loss + regularization_loss
 
-    predictions = activation3.output
-    accuracy = np.mean(np.absolute(predictions - y) < accuracy_precision)
+# # Create dataset
+# X, y, X_test, y_test = create_data_mnist('demo/fashion_mnist_images')
+# # Shuffle the training dataset
+# keys = np.array(range(X.shape[0]))
+# np.random.shuffle(keys)
+# X = X[keys]
+# y = y[keys]
+# # Scale and reshape samples
+# X = (X.reshape(X.shape[0], -1).astype(np.float32) - 127.5) / 127.5
+# X_test = (X_test.reshape(X_test.shape[0], -1).astype(np.float32) -
+#           127.5) / 127.5
 
-    if not epoch % 100:
-        print(f'epoch: {epoch}, ' +
-              f'acc: {accuracy:.3f}, ' +
-              f'loss: {loss:.3f} (' +
-              f'data_loss: {data_loss:.3f}, ' +
-              f'reg_loss: {regularization_loss:.3f}), ' +
-              f'lr: {optimizer.current_learning_rate}')
 
-    loss_function.backward(activation3.output, y)
-    activation3.backward(loss_function.dinputs)
-    dense3.backward(activation3.dinputs)
-    activation2.backward(dense3.dinputs)
-    dense2.backward(activation2.dinputs)
-    activation1.backward(dense2.dinputs)
-    dense1.backward(activation1.dinputs)
+# model = vtf.Model()
+# model.add(vtf.Layer_Dense(X.shape[1], 128))
+# model.add(vtf.Activation_ReLu())
+# model.add(vtf.Layer_Dense(128, 128))
+# model.add(vtf.Activation_ReLu())
+# model.add(vtf.Layer_Dense(128, 10))
+# model.add(vtf.Activation_Softmax())
 
-    optimizer.pre_update_params()
-    optimizer.update_params(dense1)
-    optimizer.update_params(dense2)
-    optimizer.update_params(dense3)
-    optimizer.post_update_params()
+# model.set(
+#     loss=vtf.Loss_CategoricalCrossentropy(),
+#     accuracy=vtf.Accuracy_Categorical(),
+#     optimizer=vtf.Optimizer_Adam(decay=1e-5),
+# )
+
+# model.finalize()
+
+# model.train(X, y, validation_data=(X_test, y_test),
+#             epochs=2, batch_size=128, print_every=100)
+
+# model.evaluate(X_test, y_test)
+# model.save('fmnist2.model')
+import venumtorchflow.nn as vtf
+
+
+model = vtf.Model.load('fmnist2.model')
+print(model)

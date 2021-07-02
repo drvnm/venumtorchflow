@@ -1,8 +1,5 @@
 import numpy as np
 from .loss import Loss
-import nnfs
-
-nnfs.init()
 
 
 class Loss_MeanSquaredError(Loss):
@@ -17,5 +14,5 @@ class Loss_MeanSquaredError(Loss):
 
         # gradients
         self.dinputs = -2 * (y_true - dvalues) / outputs
-        
+
         self.dinputs = self.dinputs / samples

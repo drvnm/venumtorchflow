@@ -1,11 +1,8 @@
 import numpy as np
-import nnfs
-
-nnfs.init()
 
 
 class Activation_ReLu:
-    def forward(self, inputs):
+    def forward(self, inputs, training):
         # onthoud de waarden op de derivatives te berekenen
         self.inputs = inputs
         # berekent ReLu op elk punt in de inputs
@@ -15,3 +12,6 @@ class Activation_ReLu:
         self.dinputs = dvalues.copy()
         # self.dinputs zij de derivatives w.r.t de relu functie * gradient
         self.dinputs[self.inputs <= 0] = 0
+
+    def predictions(self, outputs):
+        return outputs

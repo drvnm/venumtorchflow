@@ -1,2 +1,11 @@
 *.notes
 *.pdf
+/trash
+/pytorch
+/ML
+/demo
+
+demo/
+ML/
+trash/
+pytorch/

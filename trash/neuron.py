@@ -1,11 +1,11 @@
-import numpy as np
+import matplotlib.pyplot as plt
+import nnfs
+from nnfs.datasets import sine_data
 
-outputs = np.array([[1,  2,  3],
-                    [2,  4,  6],
-                    [0,  5,  10],
-                    [11, 12, 13],
-                    [5,  10, 15]])
+nnfs.init()
 
+X, y = sine_data()
+print(X, y)
 
-sample_losses = np.mean(outputs, axis=-1)
-print(sample_losses)
+plt.plot(X, y)
+plt.show()

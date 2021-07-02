@@ -1,8 +1,4 @@
 import numpy as np
-import nnfs
-
-
-nnfs.init()
 
 
 class Layer_Dense:
@@ -21,7 +17,11 @@ class Layer_Dense:
         self.bias_regularizer_l1 = bias_regularizer_l1
         self.bias_regularizer_l2 = bias_regularizer_l2
 
-    def forward(self, inputs):
+        # slaat op hoeveel weigts en biases we kunnen veranderen
+        self.tunable_params = n_inputs * n_neurons + len(self.biases)
+        self.num_output_neurons = n_neurons
+
+    def forward(self, inputs, training):
         # onthoud de inputs
         self.inputs = inputs
         # bereken de nieuwe outputs
@@ -56,3 +56,11 @@ class Layer_Dense:
 
         # gradients met w.r.t inputs
         self.dinputs = np.dot(dvalues, self.weights.T)
+
+    def get_parameters(self):
+        # geeft laatste weights en biases, later saven
+        return self.weights, self.biases
+
+    def set_parameters(self, weights, biases):
+        self.weights = weights
+        self.biases = biases
