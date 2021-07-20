@@ -1,0 +1,413 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>optimizers package &mdash; venumtorchflow  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> venumtorchflow
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">optimizers package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-optimizers.adagrad">optimizers.adagrad module</a></li>
+<li><a class="reference internal" href="#module-optimizers.adam">optimizers.adam module</a></li>
+<li><a class="reference internal" href="#module-optimizers.rmsprop">optimizers.rmsprop module</a></li>
+<li><a class="reference internal" href="#module-optimizers.sgd">optimizers.sgd module</a></li>
+<li><a class="reference internal" href="#module-optimizers">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">venumtorchflow</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>optimizers package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/optimizers.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="optimizers-package">
+<h1>optimizers package<a class="headerlink" href="#optimizers-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-optimizers.adagrad">
+<span id="optimizers-adagrad-module"></span><h2>optimizers.adagrad module<a class="headerlink" href="#module-optimizers.adagrad" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="optimizers.adagrad.Optimizer_Adagrad">
+<em class="property">class </em><code class="descclassname">optimizers.adagrad.</code><code class="descname">Optimizer_Adagrad</code><span class="sig-paren">(</span><em>learning_rate=1.0</em>, <em>decay=0.0</em>, <em>epsilon=1e-07</em><span class="sig-paren">)</span><a class="headerlink" href="#optimizers.adagrad.Optimizer_Adagrad" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>initialize the optimizer</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>learning_rate</strong> (<em>float</em><em>, </em><em>optional</em><em> (</em><em>default=1.</em><em>)</em>) – the learning rate for the optimizer</li>
+<li><strong>decay</strong> (<em>float</em><em>, </em><em>optional</em><em> (</em><em>default=0.</em><em>)</em>) – the rate at which the learning rate is decayed</li>
+<li><strong>epsilon</strong> (<em>float</em><em>, </em><em>optional</em><em>, </em><em>optional</em><em> (</em><em>default=1e-7</em><em>)</em>) – the small value added to the denominator to prevent division by zero</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="optimizers.adagrad.Optimizer_Adagrad.post_update_params">
+<code class="descname">post_update_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#optimizers.adagrad.Optimizer_Adagrad.post_update_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the iteration counter.
+call this after updating the parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="optimizers.adagrad.Optimizer_Adagrad.pre_update_params">
+<code class="descname">pre_update_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#optimizers.adagrad.Optimizer_Adagrad.pre_update_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the current learning rate if decay is used.
+call this before updating the parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="optimizers.adagrad.Optimizer_Adagrad.update_params">
+<code class="descname">update_params</code><span class="sig-paren">(</span><em>layer</em><span class="sig-paren">)</span><a class="headerlink" href="#optimizers.adagrad.Optimizer_Adagrad.update_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the layer parameters.</p>
+<dl class="docutils">
+<dt>layer: nn.layer()</dt>
+<dd>The layer to update, must have weights or biases.</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-optimizers.adam">
+<span id="optimizers-adam-module"></span><h2>optimizers.adam module<a class="headerlink" href="#module-optimizers.adam" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="optimizers.adam.Optimizer_Adam">
+<em class="property">class </em><code class="descclassname">optimizers.adam.</code><code class="descname">Optimizer_Adam</code><span class="sig-paren">(</span><em>learning_rate=0.001</em>, <em>decay=0.0</em>, <em>epsilon=1e-07</em>, <em>beta_1=0.9</em>, <em>beta_2=0.999</em><span class="sig-paren">)</span><a class="headerlink" href="#optimizers.adam.Optimizer_Adam" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Initialize the optimizer.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>learning_rate</strong> (<em>float</em><em>, </em><em>optional</em><em> (</em><em>default=0.001</em><em>)</em>) – The learning rate.</li>
+<li><strong>decay</strong> (<em>float</em><em>, </em><em>optional</em><em> (</em><em>default=0.</em><em>)</em>) – The decay of the learning rate.</li>
+<li><strong>epsilon</strong> (<em>float</em><em>, </em><em>optional</em><em> (</em><em>default=1e-7</em><em>)</em>) – The epsilon value used for numerical stability.</li>
+<li><strong>beta_1</strong> (<em>float</em><em>, </em><em>optional</em><em> (</em><em>default=0.9</em><em>)</em>) – The beta_1 value used for the momentums.</li>
+<li><strong>beta_2</strong> (<em>float</em><em>, </em><em>optional</em><em> (</em><em>default=0.999</em><em>)</em>) – The beta_2 value used for the momentums</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="optimizers.adam.Optimizer_Adam.post_update_params">
+<code class="descname">post_update_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#optimizers.adam.Optimizer_Adam.post_update_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the iteration counter.
+call this after updating the parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="optimizers.adam.Optimizer_Adam.pre_update_params">
+<code class="descname">pre_update_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#optimizers.adam.Optimizer_Adam.pre_update_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the current learning rate if decay is used.
+call this before updating the parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="optimizers.adam.Optimizer_Adam.update_params">
+<code class="descname">update_params</code><span class="sig-paren">(</span><em>layer</em><span class="sig-paren">)</span><a class="headerlink" href="#optimizers.adam.Optimizer_Adam.update_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the layer parameters.</p>
+<dl class="docutils">
+<dt>layer: nn.layer()</dt>
+<dd>The layer to update, must have weights or biases.</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-optimizers.rmsprop">
+<span id="optimizers-rmsprop-module"></span><h2>optimizers.rmsprop module<a class="headerlink" href="#module-optimizers.rmsprop" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="optimizers.rmsprop.Optimizer_RMSprop">
+<em class="property">class </em><code class="descclassname">optimizers.rmsprop.</code><code class="descname">Optimizer_RMSprop</code><span class="sig-paren">(</span><em>learning_rate=0.001</em>, <em>decay=0.0</em>, <em>epsilon=1e-07</em>, <em>rho=0.9</em><span class="sig-paren">)</span><a class="headerlink" href="#optimizers.rmsprop.Optimizer_RMSprop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Initialize the optimizer.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>learning_rate</strong> (<em>float</em><em>, </em><em>optional</em><em> (</em><em>default=0.001</em><em>)</em>) – The learning rate.</li>
+<li><strong>decay</strong> (<em>float</em><em>, </em><em>optional</em><em> (</em><em>default=0.</em><em>)</em>) – The decay rate for the learning rate,
+indicates how fast the learning rate should decay.</li>
+<li><strong>epsilon</strong> (<em>float</em><em>, </em><em>optional</em><em> (</em><em>default=1e-7</em><em>)</em>) – A small constant used for numerical stability.</li>
+<li><strong>rho</strong> (<em>float</em><em>, </em><em>optional</em><em> (</em><em>default=0.9</em><em>)</em>) – The momentum factor.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="optimizers.rmsprop.Optimizer_RMSprop.post_update_params">
+<code class="descname">post_update_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#optimizers.rmsprop.Optimizer_RMSprop.post_update_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the iteration counter.
+call this after updating the parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="optimizers.rmsprop.Optimizer_RMSprop.pre_update_params">
+<code class="descname">pre_update_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#optimizers.rmsprop.Optimizer_RMSprop.pre_update_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the current learning rate if decay is used.
+call this before updating the parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="optimizers.rmsprop.Optimizer_RMSprop.update_params">
+<code class="descname">update_params</code><span class="sig-paren">(</span><em>layer</em><span class="sig-paren">)</span><a class="headerlink" href="#optimizers.rmsprop.Optimizer_RMSprop.update_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the layer parameters.</p>
+<dl class="docutils">
+<dt>layer: nn.layer()</dt>
+<dd>The layer to update, must have weights or biases.</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-optimizers.sgd">
+<span id="optimizers-sgd-module"></span><h2>optimizers.sgd module<a class="headerlink" href="#module-optimizers.sgd" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="optimizers.sgd.Optimizer_SGD">
+<em class="property">class </em><code class="descclassname">optimizers.sgd.</code><code class="descname">Optimizer_SGD</code><span class="sig-paren">(</span><em>learning_rate=1.0</em>, <em>decay=0.0</em>, <em>momentum=0.0</em><span class="sig-paren">)</span><a class="headerlink" href="#optimizers.sgd.Optimizer_SGD" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>”
+Initializes the SGD optimizer</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>learning_rate</strong> (<em>float</em>) – The learning rate for the optimizer.</li>
+<li><strong>decay</strong> (<em>float</em>) – The decay rate for the learning rate,
+indicates how fast the learning rate should decay.</li>
+<li><strong>momentum</strong> (<em>float</em>) – The momentum value.
+Indicates how much the past gradients should be taken into account</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="optimizers.sgd.Optimizer_SGD.post_update_params">
+<code class="descname">post_update_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#optimizers.sgd.Optimizer_SGD.post_update_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the iteration counter.
+call this after updating the parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="optimizers.sgd.Optimizer_SGD.pre_update_params">
+<code class="descname">pre_update_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#optimizers.sgd.Optimizer_SGD.pre_update_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the current learning rate if decay is used.
+call this before updating the parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="optimizers.sgd.Optimizer_SGD.update_params">
+<code class="descname">update_params</code><span class="sig-paren">(</span><em>layer</em><span class="sig-paren">)</span><a class="headerlink" href="#optimizers.sgd.Optimizer_SGD.update_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the layer parameters.</p>
+<dl class="docutils">
+<dt>layer: nn.layer()</dt>
+<dd>The layer to update, must have weights or biases.</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-optimizers">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-optimizers" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, venum.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

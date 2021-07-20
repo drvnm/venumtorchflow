@@ -1,0 +1,45 @@
+nn.optimizers package
+=====================
+
+Submodules
+----------
+
+nn.optimizers.adagrad module
+----------------------------
+
+.. automodule:: nn.optimizers.adagrad
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nn.optimizers.adam module
+-------------------------
+
+.. automodule:: nn.optimizers.adam
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nn.optimizers.rmsprop module
+----------------------------
+
+.. automodule:: nn.optimizers.rmsprop
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nn.optimizers.sgd module
+------------------------
+
+.. automodule:: nn.optimizers.sgd
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: nn.optimizers
+   :members:
+   :undoc-members:
+   :show-inheritance:

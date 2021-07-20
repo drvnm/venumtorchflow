@@ -1,0 +1,53 @@
+nn.losses package
+=================
+
+Submodules
+----------
+
+nn.losses.bce module
+--------------------
+
+.. automodule:: nn.losses.bce
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nn.losses.cce module
+--------------------
+
+.. automodule:: nn.losses.cce
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nn.losses.loss module
+---------------------
+
+.. automodule:: nn.losses.loss
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nn.losses.mae module
+--------------------
+
+.. automodule:: nn.losses.mae
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nn.losses.mse module
+--------------------
+
+.. automodule:: nn.losses.mse
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: nn.losses
+   :members:
+   :undoc-members:
+   :show-inheritance:

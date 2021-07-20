@@ -2,7 +2,27 @@ import numpy as np
 
 
 class KMeans:
+    """
+    kmeans algorithm object
+    """
+
     def __init__(self, data, k, iters, tol, *, init="normal"):
+        """
+        initialize kmeans object
+
+        parameters
+        ----------
+        data: np.array
+            data to be clustered
+        k: int
+            number of clusters
+        iters: int
+            number of iterations
+        tol: float
+            tolerance level
+        init: str
+            method to initialize centroids
+        """
         self.data_length, self.data_dim = data.shape
         self.data = data
         self.k = k
@@ -11,6 +31,7 @@ class KMeans:
         self.init = init
 
     def train(self):
+        """ Call to train the model """
         self.centroids = {i: self.data[i] for i in range(self.k)}
 
         for i in range(self.iters):
@@ -42,6 +63,14 @@ class KMeans:
                     break
 
     def predict(self, data):
+        """
+        predict new data using trained model
+
+        parameters:
+        -----------
+        data: np.array
+            data to be classified
+        """
         distances = [np.linalg.norm(data - self.centroids[centroid])
                      for centroid in self.centroids]
         classification = distances.index(min(distances))

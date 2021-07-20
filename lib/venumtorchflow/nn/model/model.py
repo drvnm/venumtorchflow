@@ -1,22 +1,48 @@
-from venumtorchflow.nn.layers import Layer_Input
-from venumtorchflow.nn.activations import Activation_Softmax, Activation_Softmax_Loss_CategoricalCrossEntropy
-from venumtorchflow.nn.losses import Loss_CategoricalCrossentropy
+
 import pickle
 import copy
 import numpy as np
 
+import sys
+sys.path.append("../layers") 
+sys.path.append("../activations") 
+sys.path.append("../losses") 
+
 
 class Model:
     def __init__(self):
+        """
+        initialize model
+        """
         # slaat alle layers op (dense, activation)
         self.layers = []
         self.softmax_classifier_output = None
 
     def add(self, layer):
+        """
+        add a layer to the model
+
+        parameters
+        ----------
+        layer: layer object
+            the layer to add
+        """
         self.layers.append(layer)
 
     # zet de loss en optimizer
     def set(self, *, loss, optimizer, accuracy):
+        """
+        set loss, optimizer and accuracy for the model
+
+        parameters
+        ----------
+        loss: loss object
+            the loss to use for the model
+        optimizer: optimizer object
+            the optimizer to use for the model
+        accuracy: accuracy object
+            the accuracy to use for the model
+        """
         if loss is not None:
             self.loss = loss
         if optimizer is not None:
@@ -26,6 +52,24 @@ class Model:
 
     def train(self, X, y, *, epochs=1, batch_size=None, print_every=1,
               validation_data=None):
+        """
+        train the model for a given number of epochs, with a given batch size
+
+        parameters
+        ----------
+        X: numpy array
+            the training data
+        y: numpy array
+            the training labels, one hot encoded or sparse
+        epochs: int
+            the number of epochs to train for
+        batch_size: int
+            the size of the batches for training
+        print_every: int
+            print the loss and accuracy every `print_every` epochs
+        validation_data: tuple (<numpy array>, <numpy array>)
+            if provided, the model will be evaluated against this data every `print_every` epochs
+        """
 
         self.batch_size = batch_size
         # zet accuracy parameters
@@ -111,6 +155,9 @@ class Model:
                 self.evaluate(*validation_data, batch_size=batch_size)
 
     def finalize(self):
+        """
+        this method will set all of the needed properties, call before training
+        """
         # eigen input layer
         self.input_layer = Layer_Input()
         layer_count = len(self.layers)
@@ -229,6 +276,14 @@ class Model:
             layer.set_parameters(*parameter_set)
 
     def save_parameters(self, path):
+        """
+        save parameters to pickle file
+
+        parameters
+        ----------
+        path: str
+            path to save parameters to
+        """
         # write alle parameters naar pickle file
         with open(path, 'wb') as f:
             pickle.dump(self.get_parameters(), f)
@@ -238,6 +293,14 @@ class Model:
             self.set_parameters(pickle.load(f))
 
     def save(self, path):
+        """
+        save model to file
+
+        parameters
+        ----------
+        path: str
+            path to save model to
+        """
         # reset alles voor de model
         model = copy.deepcopy(self)
         model.loss.new_pass()
@@ -259,12 +322,23 @@ class Model:
 
     @staticmethod
     def load(path):
+        """ loads model from file """
         # lees de binary voor de model
         with open(path, 'rb') as f:
             model = pickle.load(f)
         return model  # laad een hele model in
 
     def predict(self, X, *, batch_size=None):
+        """ 
+        Predict the output for the given input.
+
+        parameters
+        ----------
+        X: numpy array
+            The input to the network
+        batch_size: int
+            The batch size to use for the prediction, if None use the whole dataset will be predicted
+        """
         prediction_steps = 1
 
         if batch_size is not None:
@@ -293,7 +367,7 @@ class Model:
         print("============================================================")
         for layer in self.trainable_layers:
             layer_output_size = str((self.batch_size or 1,
-                                 layer.num_output_neurons))
+                                     layer.num_output_neurons))
             print(
                 "     Layer_Dense,       {:10s}           {:10s}".format(layer_output_size, str(layer.tunable_params)))
             total_tunable += layer.tunable_params

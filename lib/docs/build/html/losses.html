@@ -1,0 +1,433 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>losses package &mdash; venumtorchflow  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> venumtorchflow
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">losses package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-losses.bce">losses.bce module</a></li>
+<li><a class="reference internal" href="#module-losses.cce">losses.cce module</a></li>
+<li><a class="reference internal" href="#module-losses.loss">losses.loss module</a></li>
+<li><a class="reference internal" href="#module-losses.mae">losses.mae module</a></li>
+<li><a class="reference internal" href="#module-losses.mse">losses.mse module</a></li>
+<li><a class="reference internal" href="#module-losses">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">venumtorchflow</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>losses package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/losses.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="losses-package">
+<h1>losses package<a class="headerlink" href="#losses-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-losses.bce">
+<span id="losses-bce-module"></span><h2>losses.bce module<a class="headerlink" href="#module-losses.bce" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="losses.bce.Loss_BinaryCrossentropy">
+<em class="property">class </em><code class="descclassname">losses.bce.</code><code class="descname">Loss_BinaryCrossentropy</code><a class="headerlink" href="#losses.bce.Loss_BinaryCrossentropy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#losses.loss.Loss" title="losses.loss.Loss"><code class="xref py py-class docutils literal notranslate"><span class="pre">losses.loss.Loss</span></code></a></p>
+<p>Compute the loss given the predictions and the labels.</p>
+<dl class="method">
+<dt id="losses.bce.Loss_BinaryCrossentropy.backward">
+<code class="descname">backward</code><span class="sig-paren">(</span><em>dvalues</em>, <em>y_true</em><span class="sig-paren">)</span><a class="headerlink" href="#losses.bce.Loss_BinaryCrossentropy.backward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the gradients of the loss with respect to the prediction.</p>
+<dl class="docutils">
+<dt>dvalues: np.array</dt>
+<dd>The gradients recieved for this layer</dd>
+<dt>y_true: np.array</dt>
+<dd>The labels.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="losses.bce.Loss_BinaryCrossentropy.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>y_pred</em>, <em>y_true</em><span class="sig-paren">)</span><a class="headerlink" href="#losses.bce.Loss_BinaryCrossentropy.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>”
+compute the loss given the predictions and the labels.</p>
+<dl class="docutils">
+<dt>y_pred: np.array</dt>
+<dd>The predictions.</dd>
+<dt>y_true: np.array</dt>
+<dd>The labels.</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-losses.cce">
+<span id="losses-cce-module"></span><h2>losses.cce module<a class="headerlink" href="#module-losses.cce" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="losses.cce.Loss_CategoricalCrossentropy">
+<em class="property">class </em><code class="descclassname">losses.cce.</code><code class="descname">Loss_CategoricalCrossentropy</code><a class="headerlink" href="#losses.cce.Loss_CategoricalCrossentropy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#losses.loss.Loss" title="losses.loss.Loss"><code class="xref py py-class docutils literal notranslate"><span class="pre">losses.loss.Loss</span></code></a></p>
+<dl class="method">
+<dt id="losses.cce.Loss_CategoricalCrossentropy.backward">
+<code class="descname">backward</code><span class="sig-paren">(</span><em>dvalues</em>, <em>y_true</em><span class="sig-paren">)</span><a class="headerlink" href="#losses.cce.Loss_CategoricalCrossentropy.backward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="losses.cce.Loss_CategoricalCrossentropy.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>y_pred</em>, <em>y_true</em><span class="sig-paren">)</span><a class="headerlink" href="#losses.cce.Loss_CategoricalCrossentropy.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculates the loss from predictions and labels</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>y_pred</strong> (<em>np.array</em>) – predictions from model</li>
+<li><strong>y_true</strong> (<em>np.array</em>) – labels from dataset</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-losses.loss">
+<span id="losses-loss-module"></span><h2>losses.loss module<a class="headerlink" href="#module-losses.loss" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="losses.loss.Loss">
+<em class="property">class </em><code class="descclassname">losses.loss.</code><code class="descname">Loss</code><a class="headerlink" href="#losses.loss.Loss" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>base class for loss functions</p>
+<dl class="method">
+<dt id="losses.loss.Loss.calculate">
+<code class="descname">calculate</code><span class="sig-paren">(</span><em>output</em>, <em>y</em>, <em>*</em>, <em>include_regularization=False</em><span class="sig-paren">)</span><a class="headerlink" href="#losses.loss.Loss.calculate" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculate the loss for a batch</p>
+<dl class="docutils">
+<dt>output: np.array</dt>
+<dd>the output of the network for a batch</dd>
+<dt>y: np.array</dt>
+<dd>the labels of the batch</dd>
+<dt>include_regularization: bool</dt>
+<dd>whether or not to include the regularization loss in the total loss</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="losses.loss.Loss.calculate_accumulated">
+<code class="descname">calculate_accumulated</code><span class="sig-paren">(</span><em>*</em>, <em>include_regularization=False</em><span class="sig-paren">)</span><a class="headerlink" href="#losses.loss.Loss.calculate_accumulated" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculate the accumulated loss</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>include_regularization</strong> (<em>bool</em>) – whether or not to include the regularization loss in the total loss</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="losses.loss.Loss.new_pass">
+<code class="descname">new_pass</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#losses.loss.Loss.new_pass" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="losses.loss.Loss.regularization_loss">
+<code class="descname">regularization_loss</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#losses.loss.Loss.regularization_loss" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="losses.loss.Loss.remember_trainable_layers">
+<code class="descname">remember_trainable_layers</code><span class="sig-paren">(</span><em>trainable_layers</em><span class="sig-paren">)</span><a class="headerlink" href="#losses.loss.Loss.remember_trainable_layers" title="Permalink to this definition">¶</a></dt>
+<dd><p>remeber which layers are trainable</p>
+<dl class="docutils">
+<dt>trainable_layers: list[nn.layer()]</dt>
+<dd>the layers that are trainable</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-losses.mae">
+<span id="losses-mae-module"></span><h2>losses.mae module<a class="headerlink" href="#module-losses.mae" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="losses.mae.Loss_MeanAbsoluteError">
+<em class="property">class </em><code class="descclassname">losses.mae.</code><code class="descname">Loss_MeanAbsoluteError</code><a class="headerlink" href="#losses.mae.Loss_MeanAbsoluteError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#losses.loss.Loss" title="losses.loss.Loss"><code class="xref py py-class docutils literal notranslate"><span class="pre">losses.loss.Loss</span></code></a></p>
+<p>calculates the loss of a network</p>
+<dl class="method">
+<dt id="losses.mae.Loss_MeanAbsoluteError.backward">
+<code class="descname">backward</code><span class="sig-paren">(</span><em>dvalues</em>, <em>y_true</em><span class="sig-paren">)</span><a class="headerlink" href="#losses.mae.Loss_MeanAbsoluteError.backward" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculates the gradients of the loss with respect to the network
+outputted values</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>dvalues</strong> (<em>np.array</em>) – gradient of the loss with respect to the network outputted values</li>
+<li><strong>y_true</strong> (<em>np.array</em>) – desired output values</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="losses.mae.Loss_MeanAbsoluteError.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>y_pred</em>, <em>y_true</em><span class="sig-paren">)</span><a class="headerlink" href="#losses.mae.Loss_MeanAbsoluteError.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculates the loss of a network outputted by a network</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>y_pred</strong> (<em>np.array</em>) – network outputted values</li>
+<li><strong>y_true</strong> (<em>np.array</em>) – desired output values</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-losses.mse">
+<span id="losses-mse-module"></span><h2>losses.mse module<a class="headerlink" href="#module-losses.mse" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="losses.mse.Loss_MeanSquaredError">
+<em class="property">class </em><code class="descclassname">losses.mse.</code><code class="descname">Loss_MeanSquaredError</code><a class="headerlink" href="#losses.mse.Loss_MeanSquaredError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#losses.loss.Loss" title="losses.loss.Loss"><code class="xref py py-class docutils literal notranslate"><span class="pre">losses.loss.Loss</span></code></a></p>
+<p>caluculates the loss of the network</p>
+<dl class="method">
+<dt id="losses.mse.Loss_MeanSquaredError.backward">
+<code class="descname">backward</code><span class="sig-paren">(</span><em>dvalues</em>, <em>y_true</em><span class="sig-paren">)</span><a class="headerlink" href="#losses.mse.Loss_MeanSquaredError.backward" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculates the gradients of the loss with respect to the network
+outputted values</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>dvalues</strong> (<em>np.array</em>) – gradient of the loss with respect to the network outputted values</li>
+<li><strong>y_true</strong> (<em>np.array</em>) – desired output values</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="losses.mse.Loss_MeanSquaredError.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>y_pred</em>, <em>y_true</em><span class="sig-paren">)</span><a class="headerlink" href="#losses.mse.Loss_MeanSquaredError.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the loss of the network outputted values
+compared to the desired output y_true</p>
+<dl class="docutils">
+<dt>y_pred: np.array</dt>
+<dd>The network outputted values</dd>
+<dt>y_true: np.array</dt>
+<dd>The desired output values</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-losses">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-losses" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, venum.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -3,6 +3,22 @@ import numpy as np
 
 class Optimizer_SGD:
     def __init__(self, learning_rate=1., decay=0., momentum=0.):
+        """"
+        Initializes the SGD optimizer
+
+        parameters
+        ----------
+        learning_rate: float
+            The learning rate for the optimizer.
+        decay: float
+            The decay rate for the learning rate, 
+            indicates how fast the learning rate should decay.
+
+        momentum: float
+            The momentum value.
+            Indicates how much the past gradients should be taken into account
+        """
+
         self.learning_rate = learning_rate
         # de learning rate die we uptdaten
         self.current_learning_rate = learning_rate
@@ -12,6 +28,10 @@ class Optimizer_SGD:
         self.momentum = momentum
 
     def pre_update_params(self):
+        """
+        Updates the current learning rate if decay is used.
+        call this before updating the parameters.
+        """
         if self.decay:
             # update de learning rate, wordt steeds lager
             if self.decay:
@@ -19,6 +39,15 @@ class Optimizer_SGD:
                     (1. / (1. + self.decay * self.iterations))
 
     def update_params(self, layer):
+        """	
+        Updates the layer parameters.
+
+        parameters:
+        -----------
+        layer: nn.layer()
+            The layer to update, must have weights or biases.
+        """
+
         # als we SGD met momentum gebruiken
         if self.momentum:
             if not hasattr(layer, 'weight_momentums'):
@@ -44,4 +73,8 @@ class Optimizer_SGD:
         layer.biases += bias_updates
 
     def post_update_params(self):
+        """
+        Updates the iteration counter.
+        call this after updating the parameters.
+        """
         self.iterations += 1

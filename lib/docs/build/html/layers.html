@@ -1,0 +1,367 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>layers package &mdash; venumtorchflow  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> venumtorchflow
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">layers package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-layers.layer_dense">layers.layer_dense module</a></li>
+<li><a class="reference internal" href="#module-layers.layer_dropout">layers.layer_dropout module</a></li>
+<li><a class="reference internal" href="#module-layers.layer_input">layers.layer_input module</a></li>
+<li><a class="reference internal" href="#module-layers">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">venumtorchflow</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>layers package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/layers.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="layers-package">
+<h1>layers package<a class="headerlink" href="#layers-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-layers.layer_dense">
+<span id="layers-layer-dense-module"></span><h2>layers.layer_dense module<a class="headerlink" href="#module-layers.layer_dense" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="layers.layer_dense.Layer_Dense">
+<em class="property">class </em><code class="descclassname">layers.layer_dense.</code><code class="descname">Layer_Dense</code><span class="sig-paren">(</span><em>n_inputs</em>, <em>n_neurons</em>, <em>weight_regularizer_l1=0</em>, <em>weight_regularizer_l2=0</em>, <em>bias_regularizer_l1=0</em>, <em>bias_regularizer_l2=0</em><span class="sig-paren">)</span><a class="headerlink" href="#layers.layer_dense.Layer_Dense" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A function to create a dense layer.</p>
+<p>Initialize a layer with n_inputs inputs and n_neurons neurons.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>n_inputs</strong> (<em>int</em>) – Number of inputs.</li>
+<li><strong>n_neurons</strong> (<em>int</em>) – Number of neurons.</li>
+<li><strong>weight_regularizer_l1</strong> (<em>float</em>) – L1 regularization factor for the weights.</li>
+<li><strong>weight_regularizer_l2</strong> (<em>float</em>) – L2 regularization factor for the weights.</li>
+<li><strong>bias_regularizer_l1</strong> (<em>float</em>) – L1 regularization factor for the biases.</li>
+<li><strong>bias_regularizer_l2</strong> (<em>float</em>) – L2 regularization factor for the biases.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="layers.layer_dense.Layer_Dense.backward">
+<code class="descname">backward</code><span class="sig-paren">(</span><em>dvalues</em><span class="sig-paren">)</span><a class="headerlink" href="#layers.layer_dense.Layer_Dense.backward" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculates the gradient of the loss with respect to the layer.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dvalues</strong> (<em>np.array</em>) – Gradients of the loss with respect to upper layer.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="layers.layer_dense.Layer_Dense.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>inputs</em>, <em>training</em><span class="sig-paren">)</span><a class="headerlink" href="#layers.layer_dense.Layer_Dense.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Forward pass.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>inputs</strong> (<em>np.array</em>) – Inputs.</li>
+<li><strong>training</strong> (<em>bool</em>) – Whether or not the network is in training mode</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="layers.layer_dense.Layer_Dense.get_parameters">
+<code class="descname">get_parameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#layers.layer_dense.Layer_Dense.get_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the weights and biases in a tupple</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="layers.layer_dense.Layer_Dense.set_parameters">
+<code class="descname">set_parameters</code><span class="sig-paren">(</span><em>weights</em>, <em>biases</em><span class="sig-paren">)</span><a class="headerlink" href="#layers.layer_dense.Layer_Dense.set_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>sets the weights and biases.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-layers.layer_dropout">
+<span id="layers-layer-dropout-module"></span><h2>layers.layer_dropout module<a class="headerlink" href="#module-layers.layer_dropout" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="layers.layer_dropout.Layer_Dropout">
+<em class="property">class </em><code class="descclassname">layers.layer_dropout.</code><code class="descname">Layer_Dropout</code><span class="sig-paren">(</span><em>rate</em><span class="sig-paren">)</span><a class="headerlink" href="#layers.layer_dropout.Layer_Dropout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>a dropout layer</p>
+<p>initializes the layer with a given dropout rate (0.0 &lt;= rate &lt;= 1.0)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>rate</strong> (<em>float</em>) – dropout rate</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="layers.layer_dropout.Layer_Dropout.backward">
+<code class="descname">backward</code><span class="sig-paren">(</span><em>dvalues</em><span class="sig-paren">)</span><a class="headerlink" href="#layers.layer_dropout.Layer_Dropout.backward" title="Permalink to this definition">¶</a></dt>
+<dd><p>backward propagation</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dvalues</strong> (<em>np.array</em>) – derivatives from upper layer</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="layers.layer_dropout.Layer_Dropout.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>inputs</em>, <em>training</em><span class="sig-paren">)</span><a class="headerlink" href="#layers.layer_dropout.Layer_Dropout.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>forward propagation with dropout</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>inputs</strong> (<em>np.array</em>) – inputs to layer</li>
+<li><strong>training</strong> (<em>bool</em>) – whether or not we are in training mode</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-layers.layer_input">
+<span id="layers-layer-input-module"></span><h2>layers.layer_input module<a class="headerlink" href="#module-layers.layer_input" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="layers.layer_input.Layer_Input">
+<em class="property">class </em><code class="descclassname">layers.layer_input.</code><code class="descname">Layer_Input</code><a class="headerlink" href="#layers.layer_input.Layer_Input" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Input layer to any network</p>
+<dl class="method">
+<dt id="layers.layer_input.Layer_Input.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>inputs</em>, <em>training</em><span class="sig-paren">)</span><a class="headerlink" href="#layers.layer_input.Layer_Input.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Forward pass for input layer</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>inputs</strong> (<em>ndarray</em>) – Inputs to the layer.</li>
+<li><strong>training</strong> (<em>bool</em>) – whether training is active or not.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-layers">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-layers" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, venum.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

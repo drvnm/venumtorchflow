@@ -4,6 +4,16 @@ from .loss import Loss
 
 class Loss_CategoricalCrossentropy(Loss):
     def forward(self, y_pred, y_true):
+        """
+        calculates the loss from predictions and labels
+
+        Parameters
+        ----------
+        y_pred : np.array
+            predictions from model
+        y_true : np.array
+            labels from dataset 
+        """
         samples = len(y_pred)
 
         # zorgt ervoor dat je geen kleine waarden dan 0 en 1 krijgt

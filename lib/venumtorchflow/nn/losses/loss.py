@@ -2,7 +2,22 @@ import numpy as np
 
 
 class Loss:
+    """ base class for loss functions """
+
     def calculate(self, output, y, *, include_regularization=False):
+        """ 
+        calculate the loss for a batch
+
+        parameters:
+        -----------
+
+        output: np.array
+            the output of the network for a batch
+        y: np.array
+            the labels of the batch
+        include_regularization: bool
+            whether or not to include the regularization loss in the total loss
+        """
         sample_losses = self.forward(output, y)
 
         self.accumulated_sum += np.sum(sample_losses)
@@ -16,6 +31,14 @@ class Loss:
         return data_loss, self.regularization_loss()
 
     def remember_trainable_layers(self, trainable_layers):
+        """
+        remeber which layers are trainable
+
+        parameters:
+        ----------
+        trainable_layers: list[nn.layer()]
+            the layers that are trainable
+        """
         self.trainable_layers = trainable_layers
 
     def regularization_loss(self):
@@ -44,6 +67,15 @@ class Loss:
         return regularization_loss
 
     def calculate_accumulated(self, *, include_regularization=False):
+        """ 
+        calculate the accumulated loss
+
+        parameters
+        ----------
+        include_regularization: bool
+            whether or not to include the regularization loss in the total loss
+        """
+
         # bereken de loss van een batch
         data_loss = self.accumulated_sum / self.accumulated_count
 

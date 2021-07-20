@@ -1,0 +1,23 @@
+nn package
+==========
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   nn.accuracy
+   nn.activations
+   nn.layers
+   nn.losses
+   nn.model
+   nn.optimizers
+
+Module contents
+---------------
+
+.. automodule:: nn
+   :members:
+   :undoc-members:
+   :show-inheritance:

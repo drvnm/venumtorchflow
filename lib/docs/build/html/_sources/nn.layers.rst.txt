@@ -1,0 +1,37 @@
+nn.layers package
+=================
+
+Submodules
+----------
+
+nn.layers.layer\_dense module
+-----------------------------
+
+.. automodule:: nn.layers.layer_dense
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nn.layers.layer\_dropout module
+-------------------------------
+
+.. automodule:: nn.layers.layer_dropout
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nn.layers.layer\_input module
+-----------------------------
+
+.. automodule:: nn.layers.layer_input
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: nn.layers
+   :members:
+   :undoc-members:
+   :show-inheritance:

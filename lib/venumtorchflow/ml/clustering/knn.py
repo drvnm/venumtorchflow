@@ -2,9 +2,25 @@ import pandas as pd
 import numpy as np
 from scipy.stats import mode
 
-# TODO: make this go brr 
+# TODO: make this go brr
+
+
 class KNearestNeighbors:
+    """ KNN Algorithm object """
+
     def __init__(self, k, training_x, training_y):
+        """
+        initialize the KNN object
+
+        parameters
+        ----------
+        k: int
+            the number of neighbors to use for classification
+        training_x: np.array
+            the training data
+        training_y: np.array
+            the training labels
+        """
         # k is het aantal punten dat we
         # van het nieuwe data punt berekenen (afstand)
         self.k = k
@@ -13,8 +29,15 @@ class KNearestNeighbors:
         self.sample_amount, self.features = self.x.shape
 
     def predict(self, x):
+        """ 
+        predicts a new points label.
+
+        parameters
+        ----------
+        x: np.array
+            the new data point to predict label for
+        """
         self.predicts = x
-        print(x.shape)
         if len(x.shape) == 1:
             self.psample_amount = 1
         else:
@@ -44,4 +67,3 @@ class KNearestNeighbors:
         inds = distances.argsort()
         y_sorted = self.y[inds]
         return y_sorted[:self.k]
-

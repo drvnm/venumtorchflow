@@ -1,0 +1,21 @@
+nn.model package
+================
+
+Submodules
+----------
+
+nn.model.model module
+---------------------
+
+.. automodule:: nn.model.model
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: nn.model
+   :members:
+   :undoc-members:
+   :show-inheritance:

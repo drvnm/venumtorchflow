@@ -1,2 +1,2 @@
 from .kmeans import KMeans
-from .knn import KNearestNeighborsn
+from .knn import KNearestNeighbors

@@ -1,0 +1,378 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>model package &mdash; venumtorchflow  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="losses package" href="losses.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> venumtorchflow
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="layers.html">layers package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimizers.html">optimizers package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clustering.html">clustering package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="activations.html">activations package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accuracy.html">accuracy package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="losses.html">losses package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">model package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-model.model">model.model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-model">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">venumtorchflow</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>model package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/model.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="model-package">
+<h1>model package<a class="headerlink" href="#model-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-model.model">
+<span id="model-model-module"></span><h2>model.model module<a class="headerlink" href="#module-model.model" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="model.model.Model">
+<em class="property">class </em><code class="descclassname">model.model.</code><code class="descname">Model</code><a class="headerlink" href="#model.model.Model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>initialize model</p>
+<dl class="method">
+<dt id="model.model.Model.add">
+<code class="descname">add</code><span class="sig-paren">(</span><em>layer</em><span class="sig-paren">)</span><a class="headerlink" href="#model.model.Model.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>add a layer to the model</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>layer</strong> (<em>layer object</em>) – the layer to add</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="model.model.Model.backward">
+<code class="descname">backward</code><span class="sig-paren">(</span><em>output</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#model.model.Model.backward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="model.model.Model.evaluate">
+<code class="descname">evaluate</code><span class="sig-paren">(</span><em>X_val</em>, <em>y_val</em>, <em>*</em>, <em>batch_size=None</em><span class="sig-paren">)</span><a class="headerlink" href="#model.model.Model.evaluate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="model.model.Model.finalize">
+<code class="descname">finalize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#model.model.Model.finalize" title="Permalink to this definition">¶</a></dt>
+<dd><p>this method will set all of the needed properties, call before training</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="model.model.Model.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>X</em>, <em>training</em><span class="sig-paren">)</span><a class="headerlink" href="#model.model.Model.forward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="model.model.Model.get_parameters">
+<code class="descname">get_parameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#model.model.Model.get_parameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="model.model.Model.load">
+<em class="property">static </em><code class="descname">load</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#model.model.Model.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>loads model from file</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="model.model.Model.load_parameters">
+<code class="descname">load_parameters</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#model.model.Model.load_parameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="model.model.Model.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>X</em>, <em>*</em>, <em>batch_size=None</em><span class="sig-paren">)</span><a class="headerlink" href="#model.model.Model.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predict the output for the given input.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>X</strong> (<em>numpy array</em>) – The input to the network</li>
+<li><strong>batch_size</strong> (<em>int</em>) – The batch size to use for the prediction, if None use the whole dataset will be predicted</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="model.model.Model.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#model.model.Model.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>save model to file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> (<em>str</em>) – path to save model to</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="model.model.Model.save_parameters">
+<code class="descname">save_parameters</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#model.model.Model.save_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>save parameters to pickle file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> (<em>str</em>) – path to save parameters to</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="model.model.Model.set">
+<code class="descname">set</code><span class="sig-paren">(</span><em>*</em>, <em>loss</em>, <em>optimizer</em>, <em>accuracy</em><span class="sig-paren">)</span><a class="headerlink" href="#model.model.Model.set" title="Permalink to this definition">¶</a></dt>
+<dd><p>set loss, optimizer and accuracy for the model</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>loss</strong> (<em>loss object</em>) – the loss to use for the model</li>
+<li><strong>optimizer</strong> (<em>optimizer object</em>) – the optimizer to use for the model</li>
+<li><strong>accuracy</strong> (<em>accuracy object</em>) – the accuracy to use for the model</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="model.model.Model.set_parameters">
+<code class="descname">set_parameters</code><span class="sig-paren">(</span><em>parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#model.model.Model.set_parameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="model.model.Model.train">
+<code class="descname">train</code><span class="sig-paren">(</span><em>X</em>, <em>y</em>, <em>*</em>, <em>epochs=1</em>, <em>batch_size=None</em>, <em>print_every=1</em>, <em>validation_data=None</em><span class="sig-paren">)</span><a class="headerlink" href="#model.model.Model.train" title="Permalink to this definition">¶</a></dt>
+<dd><p>train the model for a given number of epochs, with a given batch size</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>X</strong> (<em>numpy array</em>) – the training data</li>
+<li><strong>y</strong> (<em>numpy array</em>) – the training labels, one hot encoded or sparse</li>
+<li><strong>epochs</strong> (<em>int</em>) – the number of epochs to train for</li>
+<li><strong>batch_size</strong> (<em>int</em>) – the size of the batches for training</li>
+<li><strong>print_every</strong> (<em>int</em>) – print the loss and accuracy every <cite>print_every</cite> epochs</li>
+<li><strong>validation_data</strong> (<em>tuple</em><em> (</em><em>&lt;numpy array&gt;</em><em>, </em><em>&lt;numpy array&gt;</em><em>)</em>) – if provided, the model will be evaluated against this data every <cite>print_every</cite> epochs</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-model">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-model" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="losses.html" class="btn btn-neutral float-left" title="losses package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, venum.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

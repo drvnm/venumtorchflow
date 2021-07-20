@@ -1,6 +1,8 @@
 import numpy as np
 from .softmax import Activation_Softmax
-from venumtorchflow.nn.losses.cce import Loss_CategoricalCrossentropy
+
+import sys
+sys.path.append("../losses") 
 
 
 class Activation_Softmax_Loss_CategoricalCrossEntropy():
