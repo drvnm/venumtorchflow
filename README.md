@@ -1,3 +1,3 @@
 # venumtorchflow
-my latest work; code implementation of NNFS https://nnfs.io/
-venumtorchflow is a machine learning framework, see documentation: https://marawanmo.github.io
+Thanks to NNFS https://nnfs.io/
+venumtorchflow is a machine learning framework, with various NN models and ML algorithms.
